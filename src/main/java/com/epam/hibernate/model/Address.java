@@ -3,5 +3,30 @@ package com.epam.hibernate.model;
 public class Address {
     private int id;
     private String address;
-    private City city;    
+    private City city;  
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+    
 }

@@ -2,10 +2,10 @@ package com.epam.hibernate.model;
 
 import java.util.List;
 
-class Country {
+public class Company {
     private int id;
     private String name;
-    private List<City> cityList;
+    private List<Office> officeList;
 
     public int getId() {
         return id;
@@ -23,12 +23,11 @@ class Country {
         this.name = name;
     }
 
-    public List<City> getCityList() {
-        return cityList;
+    public List<Office> getOfficeList() {
+        return officeList;
     }
 
-    public void setCityList(List<City> cityList) {
-        this.cityList = cityList;
+    public void setOfficeList(List<Office> officeList) {
+        this.officeList = officeList;
     }
-    
 }
