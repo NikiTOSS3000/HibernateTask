@@ -7,5 +7,6 @@
     <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/xe</property>
     <property name="hibernate.connection.username">SYSTEM</property>
     <property name="hibernate.connection.password">root</property>
+    <mapping resource="../java/com/epam/hibernate/model/Address.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
