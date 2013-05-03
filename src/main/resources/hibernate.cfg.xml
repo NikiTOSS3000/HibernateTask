@@ -8,5 +8,7 @@
     <property name="hibernate.connection.username">SYSTEM</property>
     <property name="hibernate.connection.password">root</property>
     <mapping resource="../java/com/epam/hibernate/model/Address.hbm.xml"/>
+    <mapping resource="../java/com/epam/hibernate/model/City.hbm.xml"/>
+    <mapping resource="../java/com/epam/hibernate/model/Country.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

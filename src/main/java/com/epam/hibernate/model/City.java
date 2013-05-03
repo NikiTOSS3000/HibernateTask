@@ -5,7 +5,6 @@ import java.util.List;
 class City {
     private int id;
     private String name;
-    private List<Address> addressList;
     private Country country;
 
     public int getId() {
@@ -22,14 +21,6 @@ class City {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Address> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
     }
 
     public Country getCountry() {

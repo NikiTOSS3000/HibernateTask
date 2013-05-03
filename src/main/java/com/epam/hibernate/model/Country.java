@@ -5,7 +5,6 @@ import java.util.List;
 class Country {
     private int id;
     private String name;
-    private List<City> cityList;
 
     public int getId() {
         return id;
@@ -21,14 +20,5 @@ class Country {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<City> getCityList() {
-        return cityList;
-    }
-
-    public void setCityList(List<City> cityList) {
-        this.cityList = cityList;
-    }
-    
+    }    
 }
