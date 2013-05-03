@@ -2,7 +2,7 @@ package com.epam.hibernate.model;
 
 import java.util.List;
 
-class Office {
+public class Office {
     private int id;
     private Address address;
     private List<Position> positionList;

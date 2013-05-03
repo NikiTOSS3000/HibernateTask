@@ -2,10 +2,18 @@ package com.epam.hibernate.model;
 
 import java.util.List;
 
-class City {
+public class City {
     private int id;
     private String name;
     private Country country;
+
+    public City(String name, Country country) {
+        this.name = name;
+        this.country = country;
+    }
+
+    public City() {
+    }
 
     public int getId() {
         return id;

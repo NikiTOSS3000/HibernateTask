@@ -1,6 +1,6 @@
 package com.epam.hibernate.model;
 
-class Position {
+public class Position {
     private int id;
     private String name;
     private Office office;

@@ -5,6 +5,14 @@ public class Address {
     private String address;
     private City city;  
 
+    public Address(String address, City city) {
+        this.address = address;
+        this.city = city;
+    }
+
+    public Address() {
+    }
+
     public int getId() {
         return id;
     }
