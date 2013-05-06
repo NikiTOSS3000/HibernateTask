@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.epam.hibernate.model.City" table="CITY">
+        <id name="id" column="ID">
+            <generator class="native">
+                <param name="sequence">city_sequence</param>
+            </generator>
+        </id>
+        <property name="name" column="NAME" type="string"/>
+        <bag name="addressList" cascade="all" table="ADDRESS" fetch="join">
+            <key column="CITY_ID" not-null="true"/>
+            <one-to-many class="com.epam.hibernate.model.Address"/>
+        </bag>
+    </class>
+</hibernate-mapping>

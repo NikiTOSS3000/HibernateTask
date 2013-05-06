@@ -3,7 +3,7 @@ package com.epam.hibernate.model;
 public class Address {
     private int id;
     private String address;
-    private City city;  
+    private City city; 
 
     public Address(String address, City city) {
         this.address = address;
@@ -36,5 +36,5 @@ public class Address {
     public void setCity(City city) {
         this.city = city;
     }
-    
+
 }
