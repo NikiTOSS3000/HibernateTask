@@ -7,6 +7,14 @@ public class Company {
     private String name;
     private List<Office> officeList;
 
+    public Company(String name, List<Office> officeList) {
+        this.name = name;
+        this.officeList = officeList;
+    }
+
+    public Company() {
+    }
+
     public int getId() {
         return id;
     }

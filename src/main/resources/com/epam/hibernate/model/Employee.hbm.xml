@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.epam.hibernate.model.Employee" table="EMPLOYEE">
+        <id name="id" column="ID">
+            <generator class="native">
+                <param name="sequence">employee_sequence</param>
+            </generator>
+        </id>
+        <property name="firstname" type="string" column="FIRSTNAME"/>
+        <property name="lastname" type="string" column="LASTNAME"/>
+        <many-to-one name="address" fetch="select">
+            <column name="ADDRESS_ID" not-null="true"/>
+        </many-to-one>
+        <bag name="positionList" cascade="all" table="POSITION" lazy="true" inverse="true" fetch="select">
+            <key column="EMPLOYEE_ID" not-null="true"/>
+            <one-to-many class="com.epam.hibernate.model.Position"/>
+        </bag>
+    </class>
+</hibernate-mapping>

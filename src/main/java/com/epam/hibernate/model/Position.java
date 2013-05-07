@@ -6,6 +6,15 @@ public class Position {
     private Office office;
     private Employee employee;
 
+    public Position(String name, Office office, Employee employee) {
+        this.name = name;
+        this.office = office;
+        this.employee = employee;
+    }
+
+    public Position() {
+    }
+
     public int getId() {
         return id;
     }

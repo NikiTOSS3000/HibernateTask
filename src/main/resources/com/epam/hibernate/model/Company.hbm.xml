@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.epam.hibernate.model.Company" table="COMPANY">
+        <id name="id" column="ID" type="integer">
+            <generator class="native">
+                <param name="sequence">company_sequence</param>
+            </generator>
+        </id>
+        <property name="name" column="NAME" type="string"/>
+        <bag name="officeList" cascade="all" table="OFFICE" lazy="true" inverse="true" fetch="select">
+            <key column="COMPANY_ID" not-null="true"/>
+            <one-to-many class="com.epam.hibernate.model.Office"/>
+        </bag>
+    </class>
+</hibernate-mapping>

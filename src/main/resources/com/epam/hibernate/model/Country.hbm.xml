@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.epam.hibernate.model.Country">
-        <id name="id" type="int">
-            <column name="id" />
-            <generator class="increment" />
+    <class name="com.epam.hibernate.model.Country" table="COUNTRY">
+        <id name="id" column="ID">
+            <generator class="native">
+                <param name="sequence">country_sequence</param>
+            </generator>
         </id>
-        <property name="name" type="string" column="name"/>
+        <property name="name" type="string" column="NAME"/>
+        <bag name="cityList" cascade="all" table="CITY" lazy="true" inverse="true" fetch="select">
+            <key column="COUNTRY_ID" not-null="true"/>
+            <one-to-many class="com.epam.hibernate.model.City"/>
+        </bag>
     </class>
 </hibernate-mapping>

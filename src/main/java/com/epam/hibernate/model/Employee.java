@@ -9,6 +9,16 @@ public class Employee {
     private Address address;
     private List<Position> positionList;
 
+    public Employee(String firstname, String lastname, Address address, List<Position> positionList) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.positionList = positionList;
+    }
+
+    public Employee() {
+    }
+
     public int getId() {
         return id;
     }

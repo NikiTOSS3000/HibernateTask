@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.epam.hibernate.model.Office" table="OFFICE">
+        <id name="id" column="ID" type="integer">
+            <generator class="native">
+                <param name="sequence">office_sequence</param>
+            </generator>
+        </id>
+        <property name="employeesCount" type="integer" column="EMPLOYEESCOUNT"/>
+        <many-to-one name="address" fetch="select">
+            <column name="ADDRESS_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="company" fetch="select">
+            <column name="COMPANY_ID" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
