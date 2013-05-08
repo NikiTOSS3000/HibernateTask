@@ -9,11 +9,12 @@
         </id>
         <property name="firstname" type="string" column="FIRSTNAME"/>
         <property name="lastname" type="string" column="LASTNAME"/>
-        <many-to-one name="address" fetch="select">
-            <column name="ADDRESS_ID" not-null="true"/>
+        <many-to-one name="address" fetch="join" lazy="false" cascade="all">
+            <column name="ADDRESS_ID"/>
         </many-to-one>
-        <bag name="positionList" cascade="all" table="POSITION" lazy="true" inverse="true" fetch="select">
-            <key column="EMPLOYEE_ID" not-null="true"/>
+        <bag name="positionList" cascade="all" table="POSITION" 
+             lazy="false" inverse="true" fetch="select">
+            <key column="EMPLOYEE_ID"/>
             <one-to-many class="com.epam.hibernate.model.Position"/>
         </bag>
     </class>

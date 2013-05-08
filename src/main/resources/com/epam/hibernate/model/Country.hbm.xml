@@ -9,7 +9,7 @@
         </id>
         <property name="name" type="string" column="NAME"/>
         <bag name="cityList" cascade="all" table="CITY" lazy="true" inverse="true" fetch="select">
-            <key column="COUNTRY_ID" not-null="true"/>
+            <key column="COUNTRY_ID"/>
             <one-to-many class="com.epam.hibernate.model.City"/>
         </bag>
     </class>

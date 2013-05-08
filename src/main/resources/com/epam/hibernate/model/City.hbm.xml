@@ -8,12 +8,13 @@
             </generator>
         </id>
         <property name="name" column="NAME" type="string"/>
-        <bag name="addressList" cascade="all" table="ADDRESS" lazy="true" inverse="true" fetch="select">
-            <key column="CITY_ID" not-null="true"/>
+        <bag name="addressList" cascade="all" table="ADDRESS" lazy="true" 
+             inverse="true" fetch="select">
+            <key column="CITY_ID"/>
             <one-to-many class="com.epam.hibernate.model.Address"/>
         </bag>
-        <many-to-one name="country" fetch="select">
-            <column name="COUNTRY_ID" not-null="true"/>
+        <many-to-one name="country" fetch="join" cascade="all">
+            <column name="COUNTRY_ID"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

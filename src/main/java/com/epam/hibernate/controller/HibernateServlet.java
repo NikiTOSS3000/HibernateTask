@@ -43,6 +43,8 @@ public class HibernateServlet extends HttpServlet {
         Session session = sf.openSession();
         session.beginTransaction();
   
+//        Employee employee = (Employee) session.get(Employee.class, 2);
+//        System.out.println(employee.getAddress().getCity().getCountry().getName());
         Country country = new Country("Belarus", new LinkedList<City>());
         
         City city = new City("Minsk", null);
@@ -61,31 +63,24 @@ public class HibernateServlet extends HttpServlet {
         city.getAddressList().add(adr2);
         
         Company company = new Company("epam", new LinkedList<Office>());
-        Office office = new Office(adr1, new LinkedList<Position>(), 20, company);
+        Office office = new Office(adr1, new LinkedList<Position>(), company);
+        office.setEmployeesCount(10);
         Position position = new Position("programmer", office, null);
         Employee employee = new Employee("Nikita", "Laptsevich", adr2, new LinkedList<Position>());
         employee.getPositionList().add(position);
+        position.setOffice(office);
         position.setEmployee(employee);
         office.getPositionList().add(position);
         company.getOfficeList().add(office);
         
-        session.save(country);
-        session.save(company);
+        //session.save(adr1);
+        //session.save(country);
+        //session.save(company);
+        System.out.println(employee.getAddress().getAddress());
         session.save(employee);
   
         session.getTransaction().commit();
         session.close();
-        /*session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
-        session.save(address);
-        session.flush();
-        session.clear();
-        transaction.commit();
-        /*session = sessionFactory.openSession();
-        session.save(city);
-        session.flush();
-        session.clear();       */
-        //transaction.commit();
         /*String page = CommandFactory.getInstance().getCommand(req).execute(req, resp);
         if (page != null) {
             req.getRequestDispatcher(page).forward(req, resp);

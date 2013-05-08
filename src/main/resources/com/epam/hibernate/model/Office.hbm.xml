@@ -7,12 +7,12 @@
                 <param name="sequence">office_sequence</param>
             </generator>
         </id>
-        <property name="employeesCount" type="integer" column="EMPLOYEESCOUNT"/>
-        <many-to-one name="address" fetch="select">
-            <column name="ADDRESS_ID" not-null="true"/>
+        <many-to-one name="address" fetch="join" cascade="all">
+            <column name="ADDRESS_ID"/>
         </many-to-one>
-        <many-to-one name="company" fetch="select">
-            <column name="COMPANY_ID" not-null="true"/>
+        <many-to-one name="company" fetch="join" cascade="all">
+            <column name="COMPANY_ID"/>
         </many-to-one>
+        <property name="employeesCount" column="EMPLOYEESCOUNT" formula="ID+1" />
     </class>
 </hibernate-mapping>

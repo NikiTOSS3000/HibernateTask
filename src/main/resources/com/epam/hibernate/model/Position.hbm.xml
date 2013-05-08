@@ -8,11 +8,11 @@
             </generator>
         </id>
         <property name="name" type="string" column="NAME"/>
-        <many-to-one name="employee" fetch="select">
-            <column name="EMPLOYEE_ID" not-null="true"/>
+        <many-to-one name="employee" fetch="join" cascade="all">
+            <column name="EMPLOYEE_ID"/>
         </many-to-one>
-        <many-to-one name="office" fetch="select">
-            <column name="OFFICE_ID" not-null="true"/>
+        <many-to-one name="office" fetch="join" cascade="all">
+            <column name="OFFICE_ID"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

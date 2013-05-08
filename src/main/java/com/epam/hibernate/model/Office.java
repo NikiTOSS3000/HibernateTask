@@ -9,10 +9,9 @@ public class Office {
     private int employeesCount;
     private Company company;
 
-    public Office(Address address, List<Position> positionList, int employeesCount, Company company) {
+    public Office(Address address, List<Position> positionList, Company company) {
         this.address = address;
         this.positionList = positionList;
-        this.employeesCount = employeesCount;
         this.company = company;
     }
 

@@ -8,8 +8,9 @@
             </generator>
         </id>
         <property name="name" column="NAME" type="string"/>
-        <bag name="officeList" cascade="all" table="OFFICE" lazy="true" inverse="true" fetch="select">
-            <key column="COMPANY_ID" not-null="true"/>
+        <bag name="officeList" cascade="all" table="OFFICE" lazy="true" 
+             inverse="true" fetch="select">
+            <key column="COMPANY_ID"/>
             <one-to-many class="com.epam.hibernate.model.Office"/>
         </bag>
     </class>
