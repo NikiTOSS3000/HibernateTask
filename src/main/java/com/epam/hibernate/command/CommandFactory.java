@@ -7,6 +7,7 @@ public final class CommandFactory {private static CommandFactory instance = null
     HashMap<String, ICommand> commands = new HashMap<String, ICommand>();
 
     private CommandFactory() {
+        commands.put("list", new ListCommand());
     }
 
     public ICommand getCommand(HttpServletRequest request) {

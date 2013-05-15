@@ -39,13 +39,13 @@ public class HibernateServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SessionFactory sf = HibernateUtil.getSessionFactory();
+        /*SessionFactory sf = HibernateUtil.getSessionFactory();
         Session session = sf.openSession();
         session.beginTransaction();
   
 //        Employee employee = (Employee) session.get(Employee.class, 2);
 //        System.out.println(employee.getAddress().getCity().getCountry().getName());
-        Country country = new Country("Belarus", new LinkedList<City>());
+        /*Country country = new Country("Belarus", new LinkedList<City>());
         
         City city = new City("Minsk", null);
         city.setCountry(country);
@@ -80,10 +80,10 @@ public class HibernateServlet extends HttpServlet {
         session.save(employee);
   
         session.getTransaction().commit();
-        session.close();
-        /*String page = CommandFactory.getInstance().getCommand(req).execute(req, resp);
+        session.close();*/
+        String page = CommandFactory.getInstance().getCommand(req).execute(req, resp);
         if (page != null) {
             req.getRequestDispatcher(page).forward(req, resp);
-        }*/
+        }
     }
 }
