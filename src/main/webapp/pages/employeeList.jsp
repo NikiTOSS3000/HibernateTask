@@ -27,6 +27,7 @@
                     <td>${employee.address.address} </td>
                     <c:forEach var="position" items="${employee.positionList}" varStatus="i">
                         <c:if test="${i.index!=0}">
+                            <tr>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -37,6 +38,7 @@
                             <td>${position.office.address.address}</td>
                             <td>${position.office.employeesCount}</td>
                             <td>${position.name}</td>
+                            </tr>
                     </c:forEach>
             </c:forEach>
         </table>

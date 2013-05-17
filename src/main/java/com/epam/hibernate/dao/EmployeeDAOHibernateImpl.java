@@ -13,10 +13,9 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getList() {
-        int size = 1000;
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        List<Employee> employeeList = session.createCriteria(Employee.class).addOrder(Order.asc("id")).list();
+        List<Employee> employeeList = session.createCriteria(Employee.class).addOrder(Order.asc("id")).setMaxResults(100).list();
         transaction.commit();
         return employeeList;
     }
