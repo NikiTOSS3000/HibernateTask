@@ -1,12 +1,40 @@
 package com.epam.hibernate.model;
 
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Formula;
 
+@Entity
+@Table(name = "OFFICE")
 public class Office {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_name", sequenceName = "office_sequence")
     private int id;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
+    
+    @OneToMany(mappedBy = "office",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     private List<Position> positionList;
+    
+    @Formula("(select count(p.id) from position p where p.office_id=id)")
     private int employeesCount;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
     private Company company;
 
     public Office(Address address, List<Position> positionList, Company company) {

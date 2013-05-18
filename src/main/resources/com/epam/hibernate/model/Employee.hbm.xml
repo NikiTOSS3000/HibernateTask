@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.epam.hibernate.model.Employee" table="EMPLOYEE">
+    <class name="com.epam.hibernate.model.Employee" table="EMPLOYEE" >
         <id name="id" column="ID">
             <generator class="native">
                 <param name="sequence">employee_sequence</param>
@@ -12,7 +12,7 @@
         <many-to-one name="address" fetch="join" lazy="false" cascade="all">
             <column name="ADDRESS_ID"/>
         </many-to-one>
-        <bag name="positionList" cascade="all" table="POSITION" 
+        <bag name="positionList" cascade="all" table="POSITION" batch-size="100"
              lazy="false" inverse="true" fetch="select">
             <key column="EMPLOYEE_ID"/>
             <one-to-many class="com.epam.hibernate.model.Position"/>

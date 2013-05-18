@@ -1,9 +1,30 @@
 package com.epam.hibernate.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "POSITION")
 public class Position {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_name", sequenceName = "position_sequence")
     private int id;
+    
+    @Column(name = "NAME")
     private String name;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
     private Office office;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
     private Employee employee;
 
     public Position(String name, Office office, Employee employee) {

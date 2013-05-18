@@ -39,48 +39,6 @@ public class HibernateServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session session = sf.openSession();
-        session.beginTransaction();
-  
-//        Employee employee = (Employee) session.get(Employee.class, 2);
-//        System.out.println(employee.getAddress().getCity().getCountry().getName());
-        /*Country country = new Country("Belarus", new LinkedList<City>());
-        
-        City city = new City("Minsk", null);
-        city.setCountry(country);
-        country.getCityList().add(city);
-  
-        Address adr1 = new Address();
-        adr1.setAddress("lala");
-        adr1.setCity(city);
-        
-        Address adr2 = new Address();
-        adr2.setAddress("papa");
-        adr2.setCity(city);
-  
-        city.getAddressList().add(adr1);
-        city.getAddressList().add(adr2);
-        
-        Company company = new Company("epam", new LinkedList<Office>());
-        Office office = new Office(adr1, new LinkedList<Position>(), company);
-        office.setEmployeesCount(10);
-        Position position = new Position("programmer", office, null);
-        Employee employee = new Employee("Nikita", "Laptsevich", adr2, new LinkedList<Position>());
-        employee.getPositionList().add(position);
-        position.setOffice(office);
-        position.setEmployee(employee);
-        office.getPositionList().add(position);
-        company.getOfficeList().add(office);
-        
-        //session.save(adr1);
-        //session.save(country);
-        //session.save(company);
-        System.out.println(employee.getAddress().getAddress());
-        session.save(employee);
-  
-        session.getTransaction().commit();
-        session.close();*/
         String page = CommandFactory.getInstance().getCommand(req).execute(req, resp);
         if (page != null) {
             req.getRequestDispatcher(page).forward(req, resp);

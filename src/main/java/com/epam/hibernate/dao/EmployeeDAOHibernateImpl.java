@@ -12,10 +12,10 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
     private static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Override
-    public List<Employee> getList() {
+    public List<Employee> getList(int firstResult, int maxResult) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        List<Employee> employeeList = session.createCriteria(Employee.class).addOrder(Order.asc("id")).setMaxResults(100).list();
+        List<Employee> employeeList = session.createCriteria(Employee.class).addOrder(Order.asc("id")).setFirstResult(firstResult).setMaxResults(maxResult).list();
         transaction.commit();
         return employeeList;
     }

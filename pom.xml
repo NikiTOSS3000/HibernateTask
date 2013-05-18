@@ -15,10 +15,20 @@
     </properties>
 
     <dependencies>
+<!--        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.3.2.GA</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>ejb3-persistence</artifactId>
+            <version>3.3.2.Beta1</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.0</version>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -40,11 +50,6 @@
             <groupId>jdbc</groupId>
             <artifactId>oracle</artifactId>
             <version>14</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.6.10.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -71,6 +76,27 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>2.3.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.2.6.ga</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -130,5 +156,12 @@
             </plugin>
         </plugins>
     </build>
-    
+    <repositories>
+        <repository>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+            <id>eclipselink</id>
+            <layout>default</layout>
+            <name>Repository for library EclipseLink (JPA 2.0)</name>
+        </repository>
+    </repositories>
 </project>
