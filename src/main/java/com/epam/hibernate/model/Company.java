@@ -25,7 +25,7 @@ public class Company {
     @Column(name = "NAME")
     private String name;
     
-    @OneToMany(mappedBy = "compaby",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     private List<Office> officeList;
 

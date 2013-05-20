@@ -12,16 +12,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CITY")
 public class City {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_name", sequenceName = "city_sequence")
     private int id;
+    
+    @Column(name = "NAME")
     private String name;
+    
+    @ManyToOne
+    @PrimaryKeyJoinColumn
     private Country country;
+    
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Address> addressList;
 
     public City(String name, Country country) {
@@ -34,9 +44,6 @@ public class City {
         addressList = new LinkedList<Address>();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
-    @SequenceGenerator(name = "seq_name", sequenceName = "city_sequence")
     public int getId() {
         return id;
     }
@@ -45,7 +52,6 @@ public class City {
         this.id = id;
     }
 
-    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -54,7 +60,7 @@ public class City {
         this.name = name;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    
     public Country getCountry() {
         return country;
     }
@@ -63,7 +69,7 @@ public class City {
         this.country = country;
     }
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    
     public List<Address> getAddressList() {
         return addressList;
     }

@@ -11,7 +11,6 @@ public class JPAUtil {
     
     private static EntityManagerFactory buildEntityManagerFactory() {
         try {
-            System.out.println(MessageManager.getStr("JPA_ENTITY_FACTORY"));
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("employeeList");
             return emf;
         } catch (Throwable ex) {

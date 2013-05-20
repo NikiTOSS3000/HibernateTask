@@ -36,6 +36,8 @@ public final class DBGenerator {
     public static void generateDB(int amount) {
         Session session = null;
         do {
+            session = sf.getCurrentSession();
+            session.beginTransaction();
             ArrayList<Address> addresses = new ArrayList<Address>();
             ArrayList<Employee> employees = new ArrayList<Employee>();
             Country country = new Country(randStr(8), new ArrayList<City>());
@@ -73,12 +75,15 @@ public final class DBGenerator {
                     }
                 }
             }
+            int i =0;
             for (Employee employee : employees) {
-                session = sf.getCurrentSession();
-                session.beginTransaction();
                 session.save(employee);
-                session.getTransaction().commit();
+                if (++i % 50 ==0) {
+                    session.flush();
+                    session.clear();
+                }
             }
+            session.getTransaction().commit();
         } while (amount > count());
     }
 }

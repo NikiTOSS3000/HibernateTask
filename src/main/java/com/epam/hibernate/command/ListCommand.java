@@ -17,12 +17,12 @@ public class ListCommand implements ICommand{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<Employee> employees = new LinkedList<Employee>();
-//        EmployeeDAOHibernateImpl employeeDAO = new EmployeeDAOHibernateImpl();
-//        employees = employeeDAO.getList(0,100);
-        EntityManagerFactory factory = JPAUtil.getEntityManagerFactory();
-        //EntityManager em = factory.createEntityManager();
-        //Address address = (Address) em.find(Address.class, 287);
-        //System.out.println(address.getAddress());
+        EmployeeDAOHibernateImpl employeeDAO = new EmployeeDAOHibernateImpl();
+        employees = employeeDAO.getList(0,100);
+//        EntityManagerFactory factory = JPAUtil.getEntityManagerFactory();
+//        EntityManager em = factory.createEntityManager();
+//        Address address = (Address) em.find(Address.class, 287);
+//        System.out.println(address.getAddress());
         request.setAttribute("employees", employees);
         return MessageManager.getStr("LIST_PAGE_PATH");
     }
