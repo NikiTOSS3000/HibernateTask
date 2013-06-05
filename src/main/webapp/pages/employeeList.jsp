@@ -25,19 +25,19 @@
                     <td>${employee.firstname} </td>
                     <td>${employee.lastname} </td>
                     <td>${employee.address.address} </td>
-                    <c:forEach var="position" items="${employee.positionList}" varStatus="i">
+                    <c:forEach var="workplace" items="${employee.workplaceList}" varStatus="i">
                         <c:if test="${i.index!=0}">
                             <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                         </c:if>
-                            <td>${position.office.company.name}</td>
-                            <td>${position.office.address.city.name}</td>
-                            <td>${position.office.address.city.country.name}</td>
-                            <td>${position.office.address.address}</td>
-                            <td>${position.office.employeesCount}</td>
-                            <td>${position.name}</td>
+                            <td>${workplace.office.company.name}</td>
+                            <td>${workplace.office.address.city.name}</td>
+                            <td>${workplace.office.address.city.country.name}</td>
+                            <td>${workplace.office.address.address}</td>
+                            <td>${workplace.office.employeesCount}</td>
+                            <td>${workplace.position.name}</td>
                             </tr>
                     </c:forEach>
             </c:forEach>

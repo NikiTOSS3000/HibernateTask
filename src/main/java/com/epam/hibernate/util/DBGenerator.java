@@ -7,6 +7,7 @@ import com.epam.hibernate.model.Country;
 import com.epam.hibernate.model.Employee;
 import com.epam.hibernate.model.Office;
 import com.epam.hibernate.model.Position;
+import com.epam.hibernate.model.Workplace;
 import java.util.ArrayList;
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -36,10 +37,9 @@ public final class DBGenerator {
     public static void generateDB(int amount) {
         Session session = null;
         do {
-            session = sf.getCurrentSession();
-            session.beginTransaction();
             ArrayList<Address> addresses = new ArrayList<Address>();
             ArrayList<Employee> employees = new ArrayList<Employee>();
+            ArrayList<Position> positions = new ArrayList<Position>();
             Country country = new Country(randStr(8), new ArrayList<City>());
             int cityAmount = random.nextInt(3) + 1;
             for (int i = 0; i < cityAmount; i++) {
@@ -55,35 +55,40 @@ public final class DBGenerator {
             int employeeAmount = random.nextInt(100) + 1;
             for (int i = 0; i < employeeAmount; i++) {
                 Address address = addresses.get(random.nextInt(addresses.size()));
-                Employee employee = new Employee(randStr(5), randStr(5), address, new ArrayList<Position>());
+                Employee employee = new Employee(randStr(5), randStr(5), address, new ArrayList<Workplace>());
                 employees.add(employee);
             }
             int companyAmount = random.nextInt(5) + 1;
             for (int i = 0; i < companyAmount; i++) {
                 Company company = new Company(randStr(7), new ArrayList<Office>());
+                Position position = new Position(randStr(15));
                 int officeAmount = random.nextInt(10) + 1;
                 for (int j = 0; j < officeAmount; j++) {
+                    positions.add(position);
                     Address address = addresses.get(random.nextInt(addresses.size()));
-                    Office office = new Office(address, new ArrayList<Position>(), company);
+                    Office office = new Office(address, new ArrayList<Workplace>(), company);
                     company.getOfficeList().add(office);
-                    int positionAmount = random.nextInt(20) + 1;
-                    for (int k = 0; k < positionAmount; k++) {
+                    int workplaceAmount = random.nextInt(20) + 1;
+                    for (int k = 0; k < workplaceAmount; k++) {
                         Employee employee = employees.get(random.nextInt(employees.size()));
-                        Position position = new Position(randStr(15), office, employee);
-                        office.getPositionList().add(position);
-                        employee.getPositionList().add(position);
+                        position = positions.get(random.nextInt(positions.size()));
+                        Workplace workplace = new Workplace(position, office, employee);
+                        office.getWorkplaceList().add(workplace);
+                        employee.getWorkplaceList().add(workplace);
                     }
                 }
             }
-            int i =0;
+            int i = 0;
             for (Employee employee : employees) {
+                session = sf.getCurrentSession();
+                session.beginTransaction();
                 session.save(employee);
-                if (++i % 50 ==0) {
-                    session.flush();
-                    session.clear();
-                }
+                /*if (++i % 50 == 0) {
+                 session.flush();
+                 session.clear();
+                 }*/
+                session.getTransaction().commit();
             }
-            session.getTransaction().commit();
         } while (amount > count());
     }
 }

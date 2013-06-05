@@ -12,6 +12,7 @@ public final class HibernateUtil {
         try {
             return new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
+            System.out.println(ex.getMessage());
             logger.error(ex.getMessage());
             throw new ExceptionInInitializerError(ex);
         }

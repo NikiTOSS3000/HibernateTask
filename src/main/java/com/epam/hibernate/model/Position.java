@@ -1,5 +1,6 @@
 package com.epam.hibernate.model;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,17 +21,9 @@ public class Position {
     
     @Column(name = "NAME")
     private String name;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Office office;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Employee employee;
 
-    public Position(String name, Office office, Employee employee) {
+    public Position(String name) {
         this.name = name;
-        this.office = office;
-        this.employee = employee;
     }
 
     public Position() {
@@ -50,21 +43,5 @@ public class Position {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Office getOffice() {
-        return office;
-    }
-
-    public void setOffice(Office office) {
-        this.office = office;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 }

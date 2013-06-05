@@ -29,7 +29,7 @@ public class Office {
     
     @OneToMany(mappedBy = "office",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
-    private List<Position> positionList;
+    private List<Workplace> workplaceList;
     
     @Formula("(select count(p.id) from position p where p.office_id=id)")
     private int employeesCount;
@@ -37,9 +37,9 @@ public class Office {
     @ManyToOne(cascade = CascadeType.ALL)
     private Company company;
 
-    public Office(Address address, List<Position> positionList, Company company) {
+    public Office(Address address, List<Workplace> workplaceList, Company company) {
         this.address = address;
-        this.positionList = positionList;
+        this.workplaceList = workplaceList;
         this.company = company;
     }
 
@@ -62,12 +62,12 @@ public class Office {
         this.address = address;
     }
 
-    public List<Position> getPositionList() {
-        return positionList;
+    public List<Workplace> getWorkplaceList() {
+        return workplaceList;
     }
 
-    public void setPositionList(List<Position> positionList) {
-        this.positionList = positionList;
+    public void setWorkplaceList(List<Workplace> positionList) {
+        this.workplaceList = positionList;
     }
 
     public int getEmployeesCount() {

@@ -17,5 +17,6 @@
     <mapping resource="com/epam/hibernate/model/Position.hbm.xml"/>
     <mapping resource="com/epam/hibernate/model/Employee.hbm.xml"/>
     <mapping resource="com/epam/hibernate/model/Company.hbm.xml"/>
+    <mapping resource="com/epam/hibernate/model/Workplace.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

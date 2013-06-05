@@ -13,6 +13,6 @@
         <many-to-one name="company" fetch="join" cascade="all">
             <column name="COMPANY_ID"/>
         </many-to-one>
-        <property name="employeesCount" formula="(select count(p.id) from position p where p.office_id=id)" />
+        <property name="employeesCount" formula="(select count(w.id) from workplace w where w.office_id=id)" />
     </class>
 </hibernate-mapping>

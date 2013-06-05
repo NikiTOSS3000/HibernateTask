@@ -1,27 +1,15 @@
 package com.epam.hibernate.util;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import org.apache.log4j.Logger;
+import com.epam.hibernate.dao.EmployeeDAO;
+import com.epam.hibernate.resources.Constants;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.WebApplicationContext;
 
 public class JPAUtil {
-    private static final EntityManagerFactory entityManagerFactory = buildEntityManagerFactory();
-    private static final Logger logger = Logger.getLogger("com.epam.hibernate.util");
-    
-    private static EntityManagerFactory buildEntityManagerFactory() {
-        try {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("employeeList");
-            return emf;
-        } catch (Throwable ex) {
-            logger.error(ex.getMessage());
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-    
-    private JPAUtil(){}
-    
-    public static EntityManagerFactory getEntityManagerFactory() {
-        return entityManagerFactory;
+
+    public static EmployeeDAO getEmployeeDao() {
+        WebApplicationContext listener = ContextLoaderListener.getCurrentWebApplicationContext();
+        EmployeeDAO employeeDAO = (EmployeeDAO) listener.getBean(Constants.EMPLOYEE_DAO);
+        return employeeDAO;
     }
 }

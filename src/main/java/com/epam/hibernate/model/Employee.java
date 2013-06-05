@@ -35,13 +35,13 @@ public class Employee {
     
     @OneToMany(mappedBy = "EMPLOYEE",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
-    private List<Position> positionList;
+    private List<Workplace> workplaceList;
 
-    public Employee(String firstname, String lastname, Address address, List<Position> positionList) {
+    public Employee(String firstname, String lastname, Address address, List<Workplace> workplaceList) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
-        this.positionList = positionList;
+        this.workplaceList = workplaceList;
     }
 
     public Employee() {
@@ -79,11 +79,11 @@ public class Employee {
         this.address = address;
     }
 
-    public List<Position> getPositionList() {
-        return positionList;
+    public List<Workplace> getWorkplaceList() {
+        return workplaceList;
     }
 
-    public void setPositionList(List<Position> positionList) {
-        this.positionList = positionList;
+    public void setWorkplaceList(List<Workplace> positionList) {
+        this.workplaceList = positionList;
     }
 }
