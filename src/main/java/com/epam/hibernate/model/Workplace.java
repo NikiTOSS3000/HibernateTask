@@ -3,6 +3,7 @@ package com.epam.hibernate.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,16 +11,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "WORKPLACE")
 public class Workplace {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_name")
     @SequenceGenerator(name = "seq_name", sequenceName = "workplace_sequence")
     private int id;
     
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "workplace")
+    @OneToOne(cascade = CascadeType.ALL)
     private Position position;
     
     @ManyToOne(cascade = CascadeType.ALL)

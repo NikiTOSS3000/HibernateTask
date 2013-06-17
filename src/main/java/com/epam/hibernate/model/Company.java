@@ -18,15 +18,14 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "COMPANY")
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_name")
     @SequenceGenerator(name = "seq_name", sequenceName = "company_sequence")
     private int id;
     
     @Column(name = "NAME")
     private String name;
     
-    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
     private List<Office> officeList;
 
     public Company(String name, List<Office> officeList) {

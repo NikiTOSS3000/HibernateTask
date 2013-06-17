@@ -20,18 +20,17 @@ import org.hibernate.annotations.Formula;
 @Table(name = "OFFICE")
 public class Office {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_name")
     @SequenceGenerator(name = "seq_name", sequenceName = "office_sequence")
     private int id;
     
     @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
     
-    @OneToMany(mappedBy = "office",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "office",cascade = CascadeType.ALL)
     private List<Workplace> workplaceList;
     
-    @Formula("(select count(p.id) from position p where p.office_id=id)")
+    @Formula("(select count(w.id) from workplace w where w.office_id=id)")
     private int employeesCount;
     
     @ManyToOne(cascade = CascadeType.ALL)

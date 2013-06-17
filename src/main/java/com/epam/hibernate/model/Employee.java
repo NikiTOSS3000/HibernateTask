@@ -13,14 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_name")
     @SequenceGenerator(name = "seq_name", sequenceName = "employee_sequence")
     private int id;
     
@@ -33,8 +35,9 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
     
-    @OneToMany(mappedBy = "EMPLOYEE",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
+    @BatchSize(size = 100)
     private List<Workplace> workplaceList;
 
     public Employee(String firstname, String lastname, Address address, List<Workplace> workplaceList) {

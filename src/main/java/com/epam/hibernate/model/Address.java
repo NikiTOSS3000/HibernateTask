@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.JoinFetch;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -19,7 +20,7 @@ import org.hibernate.annotations.FetchMode;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_name")
     @SequenceGenerator(name = "seq_name", sequenceName = "address_sequence")
     @Column(name = "ID")
     private int id;
@@ -27,10 +28,9 @@ public class Address {
     @Column(name = "ADDRESS")
     private String address;
     
-    @ManyToOne
-    @PrimaryKeyJoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
     private City city;
-
+    
     public Address(String address, City city) {
         this.address = address;
         this.city = city;

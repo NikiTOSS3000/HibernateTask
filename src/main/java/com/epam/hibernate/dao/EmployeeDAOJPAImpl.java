@@ -4,6 +4,9 @@ import com.epam.hibernate.model.Employee;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +19,14 @@ public class EmployeeDAOJPAImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getList(int firstResult, int maxResult) {
-        return null;
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Employee> criteriaQuery = criteriaBuilder.createQuery(Employee.class);
+        Root<Employee> root = criteriaQuery.from(Employee.class);
+        criteriaQuery.orderBy(criteriaBuilder.asc(root.get("id")));
+        root.fetch("address").fetch("city").fetch("country");
+        criteriaQuery.select(root);
+        List<Employee> employees = entityManager.createQuery(criteriaQuery)
+                .setFirstResult(firstResult).setMaxResults(maxResult).getResultList();
+        return employees;
     }
 }

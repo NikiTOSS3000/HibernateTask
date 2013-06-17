@@ -26,7 +26,8 @@ abstract class AbstractDAO {
             if (connection == null) {
                 return false;
             }
-            statement = connection.createStatement();
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             return true;
         } catch (SQLException e) {
             logger.error(e.getMessage());
@@ -56,6 +57,29 @@ abstract class AbstractDAO {
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
+        }
+        return false;
+    }
+    
+    protected void addBatch() {
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.addBatch();
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+    }
+    
+    protected boolean executeBatch() {
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.executeBatch();
+                return true; 
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+            return false;
         }
         return false;
     }

@@ -15,20 +15,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_name")
     @SequenceGenerator(name = "seq_name", sequenceName = "city_sequence")
     private int id;
     
     @Column(name = "NAME")
     private String name;
     
-    @ManyToOne
-    @PrimaryKeyJoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
     private Country country;
     
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
