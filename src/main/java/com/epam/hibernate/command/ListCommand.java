@@ -9,17 +9,22 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ListCommand implements ICommand{
+public class ListCommand implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        List<Employee> employees = new LinkedList<Employee>();
-//        EmployeeDAOHibernateImpl employeeDAO = new EmployeeDAOHibernateImpl();
-//        employees = employeeDAO.getList(0,100);
         EmployeeDAO employeeDAO = EmployeeDAOUtil.getEmployeeDao();
-        employees = employeeDAO.getList(0, 5);
+        List<Employee> employees = new LinkedList<Employee>();
+        int employeePerPage = Integer.parseInt(request.getParameter("employeePerPage"));
+        int appropriatePage = Integer.parseInt(request.getParameter("appropriatePage"));
+        int employeeCount = employeeDAO.employeeCount();
+        int maxPage = (employeeCount - 1) / employeePerPage + 1;
+        employees = employeeDAO.getList(employeePerPage * (appropriatePage - 1), employeePerPage);
         request.setAttribute("employees", employees);
+        request.setAttribute("employeePerPage", employeePerPage);
+        request.setAttribute("appropriatePage", appropriatePage);
+        request.setAttribute("maxPage", maxPage);
+        request.setAttribute("employeeCount", employeeCount);
         return MessageManager.getStr("LIST_PAGE_PATH");
     }
-    
 }

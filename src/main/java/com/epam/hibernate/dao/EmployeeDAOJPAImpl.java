@@ -1,6 +1,7 @@
 package com.epam.hibernate.dao;
 
 import com.epam.hibernate.model.Employee;
+import com.epam.hibernate.util.MessageManager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,10 @@ public class EmployeeDAOJPAImpl implements EmployeeDAO {
         List<Employee> employees = entityManager.createQuery(criteriaQuery)
                 .setFirstResult(firstResult).setMaxResults(maxResult).getResultList();
         return employees;
+    }
+
+    @Override
+    public int employeeCount() {
+        return entityManager.createQuery(MessageManager.getStr("EMPLOYEE_COUNT")).getFirstResult();
     }
 }

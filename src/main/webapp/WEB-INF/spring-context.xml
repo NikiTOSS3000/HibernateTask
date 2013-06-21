@@ -6,7 +6,7 @@
     <context:annotation-config />
     <context:component-scan base-package="com.epam.hibernate" />
     
-    <import resource="/daoConfig/jdbc.xml"/> 
-    <!--<import resource="/daoConfig/hibernate.xml"/> -->
-    <!--<import resource="/daoConfig/jpa.xml"/>--> 
+    <!--<import resource="/daoConfig/jdbc.xml"/>--> 
+    <!--<import resource="/daoConfig/hibernate.xml"/>--> 
+    <import resource="/daoConfig/jpa.xml"/> 
 </beans>

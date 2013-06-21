@@ -13,20 +13,20 @@ import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public final class DBGenerator {
 
     private static final Random random = new Random();
-    private static final SessionFactory sf = HibernateUtil.getSessionFactory();
+    @Autowired
+    private static SessionFactory sf;
 
     private DBGenerator() {
     }
 
     private static int count() {
         Session session = sf.getCurrentSession();
-        session.beginTransaction();
         int answer = ((Long) session.createQuery("select count(*) from Employee").uniqueResult()).intValue();
-        session.getTransaction().commit();
         return answer;
     }
 
@@ -81,13 +81,11 @@ public final class DBGenerator {
             int i = 0;
             for (Employee employee : employees) {
                 session = sf.getCurrentSession();
-                session.beginTransaction();
                 session.save(employee);
                 /*if (++i % 50 == 0) {
                  session.flush();
                  session.clear();
                  }*/
-                session.getTransaction().commit();
             }
         } while (amount > count());
     }
