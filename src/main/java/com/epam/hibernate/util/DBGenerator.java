@@ -82,10 +82,10 @@ public final class DBGenerator {
             for (Employee employee : employees) {
                 session = sf.getCurrentSession();
                 session.save(employee);
-                /*if (++i % 50 == 0) {
+                if (++i % 50 == 0) {
                  session.flush();
                  session.clear();
-                 }*/
+                 }
             }
         } while (amount > count());
     }

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public class EmployeeDAOHibernateImpl implements EmployeeDAO {
+public final class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -24,9 +24,9 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
     }
 
     @Override
-    public int employeeCount() {
+    public long employeeCount() {
         Session session = sessionFactory.getCurrentSession();
-        int answer = ((Long) session.createQuery(MessageManager.getStr("EMPLOYEE_COUNT")).uniqueResult()).intValue();
+        long answer = ((Long) session.createQuery(MessageManager.getStr("EMPLOYEE_COUNT")).uniqueResult()).intValue();
         return answer;
     }
 }

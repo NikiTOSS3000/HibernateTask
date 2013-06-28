@@ -1,6 +1,6 @@
 package com.epam.hibernate.util;
 
-public class SQLQueryUtil {
+public final class SQLQueryUtil {
 
     public static String generateQsForIn(int numQs) {
         StringBuilder builder = new StringBuilder();
@@ -12,4 +12,5 @@ public class SQLQueryUtil {
         }
         return builder.toString();
     }
+    private SQLQueryUtil(){}
 }

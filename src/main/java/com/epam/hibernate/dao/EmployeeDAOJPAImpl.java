@@ -5,6 +5,7 @@ import com.epam.hibernate.util.MessageManager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -12,7 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public class EmployeeDAOJPAImpl implements EmployeeDAO {
+public final class EmployeeDAOJPAImpl implements EmployeeDAO {
 
     final static Logger logger = Logger.getLogger("com.epam.hibernate.dao");
     @PersistenceContext
@@ -32,7 +33,8 @@ public class EmployeeDAOJPAImpl implements EmployeeDAO {
     }
 
     @Override
-    public int employeeCount() {
-        return entityManager.createQuery(MessageManager.getStr("EMPLOYEE_COUNT")).getFirstResult();
+    public long employeeCount() {
+        Query query = entityManager.createQuery(MessageManager.getStr("EMPLOYEE_COUNT"));
+        return (Long) query.getResultList().get(0);
     }
 }

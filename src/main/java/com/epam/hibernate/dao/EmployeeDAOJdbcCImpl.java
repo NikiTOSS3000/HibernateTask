@@ -135,8 +135,8 @@ public final class EmployeeDAOJdbcCImpl extends AbstractDAO implements EmployeeD
     }
 
     @Override
-    public int employeeCount() {
-        int count = 0;
+    public long employeeCount() {
+        long count = 0;
         String employeeCount = MessageManager.getStr("EMPLOYEE_COUNT");
         try {
             if (prepareStatement(employeeCount)) {

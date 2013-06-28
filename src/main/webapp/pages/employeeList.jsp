@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="/WEB-INF/pagination.tld" prefix="pagination" %>
 <script src="js/validation.js" type="text/javascript"></script>
 
@@ -9,10 +10,14 @@
         <title>HibernateTask</title>
     </head>
     <body>
-        <pagination:ChangePageTag page="${appropriatePage}" perpage="${employeePerPage}" maxpage="${maxPage}"/>
-        <div style="float: left; min-height: 500px;">
-            <table>
+        <script>var employeeCount = ${employeeCount};</script>
+        <br>
+        <div style="float: left; min-height: 200px;">
+            <pagination:ChangePageTag controller="controller" command="list" page="${appropriatePage}" 
+                                      perpage="${itemsPerPage}" itemsCount="${employeeCount}"/>
+            <table border="1">
                 <tr>
+                    <th>Number</th>
                     <th>FirstName</th>
                     <th>LastName</th>
                     <th>Address</th>
@@ -23,14 +28,24 @@
                     <th>Employees</th>
                     <th>Position</th>
                 </tr>
-                <c:forEach var="employee" items="${employees}">
+                <c:forEach var="employee" items="${employees}" varStatus="i">
                     <tr>
+                        <td>${(appropriatePage - 1) * itemsPerPage + i.index + 1}</td>
                         <td>${employee.firstname} </td>
                         <td>${employee.lastname} </td>
                         <td>${employee.address.address} </td>
+                        <c:if test="${fn:length(employee.workplaceList) == 0}">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </c:if>
                         <c:forEach var="workplace" items="${employee.workplaceList}" varStatus="i">
                             <c:if test="${i.index!=0}">
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -45,17 +60,9 @@
                     </c:forEach>
                 </c:forEach>
             </table>
-        <pagination:ChangePageTag page="${appropriatePage}" perpage="${employeePerPage}" maxpage="${maxPage}"/>
+            <br>
+            <pagination:ChangePageTag controller="controller" command="list" page="${appropriatePage}" 
+                                      perpage="${itemsPerPage}" itemsCount="${employeeCount}"/>
         </div>
-        <form action="controller" onsubmit="return validate()" style="position: relative; text-align: center;">
-            <script>var employeeCount = ${employeeCount};</script>
-            Items per page <br>
-            <input type="text" name="employeePerPage" value="${employeePerPage}" id="employeePerPage"/><br>
-            Go to appropriate page <br>
-            <input type="text" name="appropriatePage" value="${appropriatePage}" id="appropriatePage"/><br>
-            <span id="pageError" style="color: red;"></span><br>
-            <input type="submit" value="go!"/>
-            <input type="hidden" name="command" value="list"/>
-        </form>
     </body>
 </html>

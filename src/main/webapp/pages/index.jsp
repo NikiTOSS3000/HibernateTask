@@ -3,4 +3,4 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:redirect url="/controller?command=list&appropriatePage=1&employeePerPage=100"/>
+<c:redirect url="/controller?command=list&appropriatePage=1&itemsPerPage=100"/>

@@ -13,4 +13,5 @@ public final  class EmployeeDAOUtil {
         return employeeDAO;
     }
     
+    private EmployeeDAOUtil(){}
 }

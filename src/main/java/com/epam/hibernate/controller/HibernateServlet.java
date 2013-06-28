@@ -1,6 +1,7 @@
 package com.epam.hibernate.controller;
 
 import com.epam.hibernate.command.CommandFactory;
+import com.epam.hibernate.command.ICommand;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,9 @@ public class HibernateServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String page = CommandFactory.getInstance().getCommand(req).execute(req, resp);
+        String action = req.getParameter("command");
+        ICommand command = CommandFactory.getInstance().getCommand(action);
+        String page = command.execute(req, resp);
         if (page != null) {
             req.getRequestDispatcher(page).forward(req, resp);
         }
