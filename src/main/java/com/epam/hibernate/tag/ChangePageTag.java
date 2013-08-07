@@ -7,7 +7,7 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
-public class ChangePageTag extends TagSupport {
+public final class ChangePageTag extends TagSupport {
 
     private int page;
     private int itemsCount;
